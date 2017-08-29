@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+      
+<struts>
+
+	<!-- 指定Web应用的默认编码集，相当于调用HttpServletRequest的setCharacterEncoding方法  -->
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	
+	<!-- 当struts的配置文件修改后，系统是否自动重新加载该文件，默认值为false，开发阶段最好true -->
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	
+	<!-- 开发模式下设为true，这样可以打印出更详细的错误信息  -->
+	<constant name="struts.devMode" value="true"/>
+	<!-- 动态方法调用，为true时，就可以在struts.xml配置“*”的通配符，来调用action里的方法 -->
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <package name="1.8" namespace="/" extends="json-default">
+       
+     
+        <action name="hello" method="login" class="action.Start">
+            <result>
+                /index.jsp
+            </result>
+        </action>
+     
+        <action name="rs" method="returnRs" class="action.Start">         
+            <result type="json">
+				<param name="root">rs</param>
+			</result>          
+        </action>
+       
+      <action name="y" method="testRs" class="start" >  
+        	<result type="json">
+				<param name="root">rs</param>						
+			</result>     
+      </action>  
+       
+      	<action name="register" method="base" class="registerAction" >  
+            <result name="input">/Register.jsp</result>  
+            <result name="success">/Success.jsp</result>  
+            <result name="error">/Fail.jsp</result>  
+            
+        </action>  
+        
+        
+        <action name="xxx" method="queryAllData" class="registerAction" >  
+        	<result type="json">
+				<param name="root">list</param>						
+			</result>   
+			  
+        </action>  
+        
+        <action name="getCurrentResourceForUserId" method="getCurrentResourceForUserId" class="itsmHomeAction" >  
+        	<result type="json">
+				<param name="root">resourceForUserIdList</param>						
+			</result>   
+			  
+        </action>  
+        
+        
+        
+    </package>
+   	
+  
+     
+    <!--   <include file="./struts-1.8.xml" /> -->
+</struts>

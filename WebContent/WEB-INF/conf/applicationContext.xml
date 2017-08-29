@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans     		
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+  	<import resource="applicationContext-cxf.xml" />
+  	<import resource="applicationContext-bo.xml" />
+    <import resource="applicationContext-dao.xml" />
+  	<import resource="applicationContext-action.xml" />
+  	<import resource="applicationContext-datasource.xml" />
+  	<import resource="applicationContext-sql.xml" />
+  	<import resource="applicationContext-common.xml" />
+  	<import resource="applicationContext-event.xml" />
+</beans>  

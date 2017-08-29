@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC   
+     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"   
+     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="bean">  
+    <class name="User" table="user">  
+        <cache usage="read-only"/>
+        <id name="userId" column="userId">  
+            <generator class="uuid"></generator>  
+        </id>  
+        <property name="userName" column="userName" type="java.lang.String"  
+            not-null="true" length="16"></property>  
+        <property name="password" column="password" type="java.lang.String"  
+            not-null="true" length="16" />  
+        <property name="gender" column="gender" type="java.lang.Integer" length="1" />  
+    </class>  
+</hibernate-mapping>  

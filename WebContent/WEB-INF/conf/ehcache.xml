@@ -1,0 +1,27 @@
+<ehcache updateCheck="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.sf.net/ehcache.xsd">  
+  
+  	<!--  配置二级缓存硬盘临时目录位置   -->
+	<diskStore path="D:\\ehcahe\\local-cache"/> 
+	<!-- 
+	  maxElementsInMemory="10000" // 内存中最大对象数量 ，超过数量，数据会被缓存到硬盘
+	  eternal="false"// 是否缓存为永久性 false 不永久
+	  timeToIdleSeconds="120" 
+      timeToLiveSeconds="120" // 存活时间，对象不管是否使用，到了时间回收  
+      overflowToDisk="true" // 是否可以缓存到硬盘  
+      maxElementsOnDisk="10000000" // 硬盘缓存最大对象数量   
+	  diskExpiryThreadIntervalSeconds="120"  // 指定专门用于清除过期对象的监听线程的轮询时间   
+	 -->
+	
+	
+	<defaultCache maxElementsInMemory="10000"
+                  eternal="false"
+                  timeToIdleSeconds="3600"
+                  timeToLiveSeconds="3600"
+                  overflowToDisk="true"
+                  diskPersistent="false"
+                  diskExpiryThreadIntervalSeconds="120"
+                  memoryStoreEvictionPolicy="LRU"/>
+    
+  
+</ehcache>  

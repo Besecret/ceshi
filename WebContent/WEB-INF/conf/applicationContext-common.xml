@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	
+	<!-- MAIL 通用邮件接口  -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	</bean>
+
+	<!-- 简单邮件发送 -->	
+	<bean id="common.bo.send" class="common.boImpl.SendMailBoImpl">
+		<property name="mailBo" ref="basemail" />
+		<property name="defaultFromAddress" value="dong-wang_neu@neusoft.com" />
+		<property name="mailSender" ref="mailSender" />
+		<property name="host" value="smtp.neusoft.com" />
+		<property name="port" value="587" />
+		<property name="username" value="dong-wang_neu" />
+		<property name="password" value="abc,123." />
+		<property name="defaultText">
+			<value><![CDATA[ 
+  				<font size='3' face='Microsoft YaHei'>您好#userName#，<br/>您有新的事件需要及时处理，请<a href='http://localhost:8080/framework/itsm/service/ItsmServiceWorkItem-view.jsp?procId=F9219756-88B2-1486-7E13-EE8A1104A7E0,EB3E1887-3855-390F-B7D2-7A52CA45D1FA&eap_username=#eapAccount#&eap_password=#eapPassword#&appNo=#appNo#'>登录</a>itsm系统查看。</font>
+				<br/>
+				<br/>
+				<div style='background-color:#EEE9E9;width:50%;'>
+					<div style='text-align:center'>
+						<font size='4' face='Microsoft YaHei' >概要信息</font>
+					</div>
+					<div style='margin-left:20px;width:100%;'>
+						<table style='width:100%;'>
+						<tr><td width="30%">事件编号：</td><td>#eventCode#</td></tr>
+						<tr><td >事件标题：</td><td>#eventTitle#</td></tr>
+						<tr><td >登记时间：</td><td>#eventDate#</td></tr>
+						<tr><td >联系人：</td><td>#applicant#</td></tr>
+						<tr><td >联系电话：</td><td>#phone#</td></tr>
+						</table>
+					</div>
+				</div>
+  			]]></value>
+		</property>   
+	</bean>
+	
+	<!-- spring 事件发布者 -->
+	
+	<bean id="eventPublisher" class="common.eventImpl.EventPublisherImpl"></bean>
+	
+	<!-- property 属性获取
+	<bean id="propertyConfigurer"
+        class="common.util.PropertyUtil">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/conf/hibernate.properties</value>
+            </list>
+        </property>
+    </bean>   
+	-->
+	
+	
+	<bean id="propertyUtil" class="common.util.PropertyUtil">			
+	</bean>
+    
+    <!-- ehcache 配置 -->
+    <!-- ehCache 配置管理器 -->
+    <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="WEB-INF/conf/ehcache.xml" />
+        <!--true:单例，一个cacheManager对象共享；false：多个对象独立  -->
+        <property name="shared" value="true" />
+        <property name="cacheManagerName" value="ehcacheManager" />
+    </bean>
+    
+    <!-- ehCache 操作对象 -->
+    <bean id="ehCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+       <property name="cacheName" value="ehCache"/>
+       <property name="cacheManager" ref="ehcacheManager"/>
+    </bean>
+    
+    
+    
+    
+	
+</beans>

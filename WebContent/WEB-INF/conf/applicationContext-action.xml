@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans     		
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- 用户注册的Action -->
+	<bean id="registerAction" class="action.RegisterAction">
+		<property name="userManager">
+			<ref bean="userManager" />
+		</property>
+	</bean>
+
+	<bean id="start" class="action.Start">
+		<property name="actionTest">
+			<ref bean="actionTest" />
+		</property>
+		<property name="event">
+			<ref bean="event" />
+		</property>
+		
+	</bean>
+
+	<bean id="itsmHomeAction" class="action.ItsmHomeAction">
+		<property name="itsmServiceHomepageResourceBo">
+			<ref bean="itsmServiceHomepageResourceBo" />
+		</property>
+	</bean>
+
+
+</beans>  
